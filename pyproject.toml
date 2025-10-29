@@ -1,0 +1,84 @@
+[build-system]
+requires = ["setuptools>=45", "wheel", "setuptools_scm"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "rudag-sdk"
+dynamic = ["version"]
+description = "SDK oficial para interactuar con la blockchain de Rudag Network"
+authors = [
+    {name = "Rudag Network", email = "cmoraes199322@gmail.com"},
+]
+keywords = ["blockchain", "cryptocurrency", "rudag", "sdk", "api"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Blockchain",
+    "Topic :: Cryptocurrency",
+]
+requires-python = ">=3.7"
+dependencies = [
+    "requests>=2.25.1",
+    "ecdsa>=0.17.0",
+    "base58>=2.1.0",
+    "cryptography>=3.4.7",
+    "websockets>=10.0",
+    "aiohttp>=3.8.0",
+    "pydantic>=1.8.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=6.0",
+    "pytest-cov>=2.0",
+    "pytest-asyncio>=0.15.0",
+    "black>=21.0",
+    "flake8>=3.9",
+    "mypy>=0.910",
+    "sphinx>=4.0",
+    "sphinx-rtd-theme>=1.0",
+    "pre-commit>=2.15.0",
+]
+async = [
+    "aiohttp>=3.8.0",
+    "websockets>=10.0",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/Rudag-Network/rudag-sdk-python"
+"Documentation" = "https://rudag-network.github.io/rudag-sdk-python"
+"Bug Reports" = "https://github.com/Rudag-Network/rudag-sdk-python/issues"
+"Source" = "https://github.com/Rudag-Network/rudag-sdk-python"
+
+[tool.setuptools_scm]
+write_to = "rudag_sdk/_version.py"
+
+[tool.black]
+line-length = 88
+target-version = ['py37', 'py38', 'py39', 'py310', 'py311']
+
+[tool.flake8]
+max-line-length = 88
+extend-ignore = ["E203", "W503"]
+exclude = [".git", "__pycache__", "build", "dist", "*.egg-info"]
+
+[tool.mypy]
+python_version = "3.7"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = "--cov=rudag_sdk --cov-report=html --cov-report=term-missing"
+testpaths = ["tests"]
+asyncio_mode = "auto"
